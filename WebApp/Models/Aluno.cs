@@ -8,7 +8,7 @@ using System.Web.Hosting;
 
 namespace WebApp.Models
 {
-    public class Alunos
+    public class Aluno
     {
         public int id { get; set; }
         public string nome { get; set; }
@@ -16,18 +16,18 @@ namespace WebApp.Models
         public string telefone { get; set; }
         public int ra { get; set; }
 
-        public List<Alunos> ListarAlunos()
+        public List<Aluno> ListarAlunos()
         {
 
             var caminhoArquivo = HostingEnvironment.MapPath(@"~/App_Data/Base.json");
             var json = File.ReadAllText(caminhoArquivo);
-            var listaAlunos = JsonConvert.DeserializeObject<List<Alunos>>(json);
+            var listaAlunos = JsonConvert.DeserializeObject<List<Aluno>>(json);
 
 
             return listaAlunos;
         }
 
-        public bool RescreverArquivo(List<Alunos> listaAluno)
+        public bool RescreverArquivo(List<Aluno> listaAluno)
         {
             var caminhoArquivo = HostingEnvironment.MapPath(@"~/App_Data/Base.json");
             var json = JsonConvert.SerializeObject(listaAluno, Formatting.Indented);
@@ -36,7 +36,7 @@ namespace WebApp.Models
             return true;
         }
 
-        public Alunos Inserir(Alunos Aluno)
+        public Aluno Inserir(Aluno Aluno)
         {
             var listaAlunos = this.ListarAlunos();
 
@@ -49,7 +49,7 @@ namespace WebApp.Models
             return Aluno;
         }
 
-        public Alunos Atualizar(int id, Alunos Aluno)
+        public Aluno Atualizar(int id, Aluno Aluno)
         {
             var listaAlunos = this.ListarAlunos();
 
